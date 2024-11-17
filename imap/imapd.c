@@ -2336,7 +2336,7 @@ static void cmdloop(void)
                 if (client_capa & CAPA_UIDONLY) goto uidonly;
                 if (c != ' ') goto missingargs;
 
-                cmd_search(tag.s, cmd.s, 0)
+                cmd_search(tag.s, cmd.s, 0);
 
                 prometheus_increment(CYRUS_IMAP_SEARCH_TOTAL);
             }
@@ -6143,10 +6143,9 @@ static void cmd_search(char *tag, char *cmd, int usinguid)
 
     if (cmd[0] == 'E')
         // Esearch (multisearch)
-        usinguid = 1
+        usinguid = 1;
         client_behavior.did_multisearch = 1;
         state |= GETSEARCH_SOURCE;
-    }
 
     /* RFC 9855, Section 3: MUST reject SEARCH with a charset specification */ 
     if (!(client_capa & CAPA_UTF8_ACCEPT)) {
