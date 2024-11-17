@@ -6141,11 +6141,12 @@ static void cmd_search(char *tag, char *cmd, int usinguid)
         return;
     }
 
-    if (cmd[0] == 'E')
+    if (cmd[0] == 'E') {
         // Esearch (multisearch)
         usinguid = 1;
         client_behavior.did_multisearch = 1;
         state |= GETSEARCH_SOURCE;
+    }
 
     /* RFC 9855, Section 3: MUST reject SEARCH with a charset specification */ 
     if (!(client_capa & CAPA_UTF8_ACCEPT)) {
